@@ -1,0 +1,217 @@
+<!doctype html>
+
+<html>
+  <head>
+    <title>Sports Scores's Popup</title>
+    <style>
+      body {
+        margin:5px;
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      body,html{
+        min-height: 500px;
+        max-height: 600px;
+        min-width: 400px;
+        max-width: 500px;
+        background: grey;
+      }
+      #right {
+        text-align:right;
+        font-size:8pt;
+      }
+      #span {
+        font-size:50%; 
+        color:#353535;
+        font-weight: bold;
+      }
+      #error{
+        color:red;
+        margin: 0;
+        padding: 2px;
+      }
+      h5,h6 {
+        margin: 0;
+        padding: 2px;
+      }
+      .boxed{
+        border-style: inset;
+        border-width: 1px;
+        background: #fff;
+      }
+      .cricket-loader, .epl-loader, .uefa-loader, .bundesliga-loader, .facup-loader, .laliga-loader{
+        text-align:center;
+      }
+      .loader-img{
+        width:30px;
+        height:30px;
+      }
+      .cricket-container, .epl-football-container, .uefachamps-football-container, .bundesliga-football-container, .facup-football-container, .laliga-football-container {
+        width:100%;
+      }
+      #cricket .descriptionClass, #epl-football .descriptionClass, #uefachamps-football .descriptionClass, #bundesliga-football .descriptionClass, #facup-football .descriptionClass, 
+      #laliga-football .descriptionClass {
+        display:none;
+      }
+      .cricket-container .cricket-header-localmatches, .cricket-container .cricket-header-news, .epl-football-container .epl-football-header-live, .epl-football-container .epl-football-header-reports, .uefachamps-football-container .uefachamps-football-header-live, .uefachamps-football-container .uefachamps-football-header-reports, .bundesliga-football-container .bundesliga-football-header-live, .bundesliga-football-container .bundesliga-football-header-news, .facup-football-container .facup-football-header-live, /*, .facup-football-container .facup-football-header-reports*/ .laliga-football-container .laliga-football-header-live{
+        padding: 2px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .cricket-container .cricket-content, .epl-football-container .epl-football-content, .uefachamps-football-container .uefachamps-football-content, 
+      .bundesliga-football-container .bundesliga-football-content, .facup-football-container .facup-football-content, .laliga-football-container .laliga-football-content{
+        display: none;
+        padding : 2px;
+        font-size: 15px;
+      }
+    </style>
+
+    <script src="scripts/jquery-1.10.2.js"></script>
+    <script src="popup.js"></script>  
+
+  </head>
+  <body>
+    <div class="boxed">Sports Live Scores
+      <h6 style="float:right"; ><a href="/options.html"><img border="0" src="img/options.png" width="18" height="18"></a></h6>
+      <h6 id="version" style="float:right;font-size: 10%;" ><a href="chrome://extensions/">Update the extension, check developer mode</a></h6>
+    </div>
+    <br />
+    <div class="boxed" id="cricket"> 
+      <h6>CRICKET</h6>
+      <div class="cricket-loader">   <img class ="loader-img" src='img/loading.png' /></div>
+      <table cellpadding='0' cellspacing='0' id="cricketTable">    
+      </table>
+      <h6 id="right" ><a href='http://www.espncricinfo.com/ci/engine/match/index.html?CMP=chrome'>more for cricket lovers <img border="0" src="img/raquo.png" width="10" height="9"></a></h6>
+      <div class="cricket-container">
+        <div class="cricket-header-localmatches"><span style="font-size: 70%" id="cricket-arrow-span-localmatches">More <img src="img/more.png" width="9" height="8"></span>
+        </div>
+        <div class="cricket-content">
+          <table cellpadding='0' cellspacing='0' id="cricketTable1"/>    
+          </table>
+        </div>
+      </div>
+      <div class="cricket-container">
+        <div class="cricket-header-news"><span style="font-size: 70%" id="cricket-arrow-span-news">News <img src="img/more.png" width="9" height="8"></span>
+        </div>
+        <div class="cricket-content">
+          <table cellpadding='0' cellspacing='0' id="cricketTable2"/>    
+          </table>
+        </div>
+      </div>
+    </div>
+  <br />
+  <div class="boxed" id="epl-football">
+    <h6>ENGLISH PREMIER LEAGUE - FOOTBALL <a style="float:right"; href="http://www.premierleague.com/en-gb/matchday/league-table.html">Rankings Table</a></h6>
+    <div class="epl-loader">   <img class ="loader-img"  src='img/loading.png' /></div>
+    <table cellpadding='0' cellspacing='0' id="eplFootballTable">    
+    </table>
+    <div class="epl-football-container">
+      <div class="epl-football-header-live"><span style="font-size: 70%" id="epl-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="epl-football-content">
+        <table cellpadding='0' cellspacing='0' id="eplFootballTable1">    
+        </table>
+      </div>
+    </div>
+    <div class="epl-football-container">
+      <div class="epl-football-header-reports"><span style="font-size: 70%" id="epl-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="epl-football-content">
+        <table cellpadding='0' cellspacing='0' id="eplFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="laliga-football">
+    <h6>SPANISH LALIGA - FOOTBALL<a style="float:right"; href="http://www.espnfc.us/spanish-primera-division/15/table">Rankings Table</a></h6>
+    <div class="laliga-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="laligaFootballTable">    
+    </table>
+    <div class="laliga-football-container">
+      <div class="laliga-football-header-live"><span style="font-size: 70%" id="laliga-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="laliga-football-content">
+        <table cellpadding='0' cellspacing='0' id="laligaFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="uefachamps-football"> 
+    <h6>UEFA CHAMPIONS LEAGUE - FOOTBALL <a style="float:right"; href="http://www.uefa.com/uefachampionsleague/season=?/standings/">Rankings Table</a></h6>
+    <div class="uefa-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable">    
+    </table>
+    <div class="uefachamps-football-container">
+      <div class="uefachamps-football-header-live"><span style="font-size: 70%" id="uefachamps-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="uefachamps-football-content">
+        <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+    <div class="uefachamps-football-container">
+      <div class="uefachamps-football-header-reports"><span style="font-size: 70%" id="uefachamps-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="uefachamps-football-content">
+        <table cellpadding='0' cellspacing='0' id="uefachampsFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="bundesliga-football"> 
+    <h6>GERMAN BUNDESLIGA LEAGUE - FOOTBALL <a style="float:right"; href="http://www.bundesliga.com/en/stats/table/">Rankings Table</a></h6>
+    <div class="bundesliga-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="bundesligaFootballTable">    
+    </table>
+    <div class="bundesliga-football-container">
+      <div class="bundesliga-football-header-live"><span style="font-size: 70%" id="bundesliga-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="bundesliga-football-content">
+        <table cellpadding='0' cellspacing='0' id="bundesligaFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+    <div class="bundesliga-football-container">
+      <div class="bundesliga-football-header-news"><span style="font-size: 70%" id="bundesliga-football-arrow-span-news">News <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="bundesliga-football-content">
+        <table cellpadding='0' cellspacing='0' id="bundesligaFootballTable2"/>    
+        </table>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="boxed" id="facup-football"> 
+    <h6>ENGLISH FA CUP - FOOTBALL</h6>
+    <div class="facup-loader">   <img class ="loader-img" src='img/loading.png'/></div>
+    <table cellpadding='0' cellspacing='0' id="facupFootballTable">    
+    </table>
+    <div class="facup-football-container">
+      <div class="facup-football-header-live"><span style="font-size: 70%" id="facup-football-arrow-span-live">More <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="facup-football-content">
+        <table cellpadding='0' cellspacing='0' id="facupFootballTable1"/>    
+        </table>
+      </div>
+    </div>
+<!--     <div class="facup-football-container">
+      <div class="facup-football-header-reports"><span style="font-size: 70%" id="facup-football-arrow-span-reports">Match Reports <img src="img/more.png" width="9" height="8"></span>
+      </div>
+      <div class="facup-football-content">
+        <table cellpadding='0' cellspacing='0' id="facupFootballTable2"/>    
+        </table>
+      </div>
+    </div> -->
+  </div>
+  <br />
+  <div class="boxed"> 
+    <h6>Coming Soon...</h6>
+    <h6><a href="http://www.uefa.com/uefaeuro/draws/index.html">UEFA Euro 2016 Draws</a></h6>
+    <h6><a href="http://www.uefa.com/uefaeuro/season=2016/matches/day=1/index.html">UEFA Euro 2016 Fixtures</a></h6>
+  </div>
+  </body>
+</html>
+
